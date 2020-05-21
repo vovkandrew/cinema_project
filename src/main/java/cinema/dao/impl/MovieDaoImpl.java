@@ -21,13 +21,13 @@ public class MovieDaoImpl implements MovieDao {
             transaction = session.beginTransaction();
             Long movieId = (Long) session.save(movie);
             movie.setId(movieId);
-            LOGGER.info("New movies added to the database");
+            LOGGER.info("New movie " + movie.getTitle() + " " + movie.getId() + " has been added to the database");
             return movie;
         } catch (Exception e) {
             if (transaction != null) {
                 transaction.rollback();
             }
-            throw new RuntimeException("Can't add new Movie to the database", e);
+            throw new RuntimeException("Can't add new movie to the database", e);
         }
     }
 

@@ -2,5 +2,10 @@ package cinema.dao;
 
 import cinema.model.Movie;
 
-public interface MovieDao extends GenericDao<Movie> {
+import java.util.List;
+
+public interface MovieDao {
+    public Movie add(Movie movie);
+
+    public List<Movie> getAll();
 }
