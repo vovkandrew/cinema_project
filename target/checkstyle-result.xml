@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<checkstyle version="8.29">
+<file name="C:\Users\User\IdeaProjects\cinema_project\src\main\java\cinema\dao\GenericDao.java">
+</file>
+<file name="C:\Users\User\IdeaProjects\cinema_project\src\main\java\cinema\dao\impl\MovieDaoImpl.java">
+</file>
+<file name="C:\Users\User\IdeaProjects\cinema_project\src\main\java\cinema\dao\MovieDao.java">
+</file>
+<file name="C:\Users\User\IdeaProjects\cinema_project\src\main\java\cinema\library\Dao.java">
+</file>
+<file name="C:\Users\User\IdeaProjects\cinema_project\src\main\java\cinema\library\Inject.java">
+</file>
+<file name="C:\Users\User\IdeaProjects\cinema_project\src\main\java\cinema\library\Injector.java">
+</file>
+<file name="C:\Users\User\IdeaProjects\cinema_project\src\main\java\cinema\library\Service.java">
+</file>
+<file name="C:\Users\User\IdeaProjects\cinema_project\src\main\java\cinema\Main.java">
+</file>
+<file name="C:\Users\User\IdeaProjects\cinema_project\src\main\java\cinema\model\Movie.java">
+</file>
+<file name="C:\Users\User\IdeaProjects\cinema_project\src\main\java\cinema\service\GenericService.java">
+</file>
+<file name="C:\Users\User\IdeaProjects\cinema_project\src\main\java\cinema\service\impl\MovieServiceImpl.java">
+</file>
+<file name="C:\Users\User\IdeaProjects\cinema_project\src\main\java\cinema\service\MovieService.java">
+</file>
+<file name="C:\Users\User\IdeaProjects\cinema_project\src\main\java\cinema\until\HibernateUtil.java">
+</file>
+</checkstyle>
