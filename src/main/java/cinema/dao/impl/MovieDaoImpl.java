@@ -1,12 +1,16 @@
 package cinema.dao.impl;
 
 import cinema.dao.MovieDao;
+import cinema.exceptions.DataExecutionException;
 import cinema.library.Dao;
 import cinema.model.Movie;
 import cinema.until.HibernateUtil;
+
+import java.sql.SQLDataException;
 import java.util.List;
 import javax.persistence.criteria.CriteriaQuery;
 import org.apache.log4j.Logger;
+import org.hibernate.HibernateException;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 
@@ -23,11 +27,11 @@ public class MovieDaoImpl implements MovieDao {
             movie.setId(movieId);
             LOGGER.info("New movie " + movie.getTitle() + " " + movie.getId() + " has been added to the database");
             return movie;
-        } catch (Exception e) {
+        } catch (HibernateException e) {
             if (transaction != null) {
                 transaction.rollback();
             }
-            throw new RuntimeException("Can't add new movie to the database", e);
+            throw new DataExecutionException("Can't add new movie to the database", e);
         }
     }
 
@@ -39,8 +43,8 @@ public class MovieDaoImpl implements MovieDao {
             criteriaQuery.from(Movie.class);
             LOGGER.info("All movies retrieved from the database");
             return session.createQuery(criteriaQuery).getResultList();
-        } catch (Exception e) {
-            throw new RuntimeException("Can't retrieve movies from the database", e);
+        } catch (HibernateException e) {
+            throw new DataExecutionException("Can't retrieve movies from the database", e);
         }
     }
 }
