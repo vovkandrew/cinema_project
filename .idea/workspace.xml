@@ -1,0 +1,178 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="BranchesTreeState">
+    <expand>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="LOCAL_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+    </expand>
+    <select />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="eb10a11c-cc24-4dad-abd6-56191106e877" name="Default Changelist" comment="Trying to remove unnecessary folders mapping them at gitignore" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Interface" />
+        <option value="Class" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_BRANCH_BY_REPOSITORY">
+      <map>
+        <entry key="$PROJECT_DIR$" value="master" />
+      </map>
+    </option>
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="ProjectId" id="1cAWtF3i2bF2YNY6eDHvhB5TxRE" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="ASKED_SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
+    <property name="DatabaseDriversLRU" value="mysql" />
+    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="aspect.path.notification.shown" value="true" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/src/main/java/layers" />
+    <property name="node.js.detected.package.eslint" value="true" />
+    <property name="node.js.detected.package.tslint" value="true" />
+    <property name="node.js.path.for.package.eslint" value="project" />
+    <property name="node.js.path.for.package.tslint" value="project" />
+    <property name="node.js.selected.package.eslint" value="(autodetect)" />
+    <property name="node.js.selected.package.tslint" value="(autodetect)" />
+  </component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\User\IdeaProjects\cinema_project\src\main\resources" />
+      <recent name="C:\Users\User\IdeaProjects\cinema_project\src\main\project\classes" />
+      <recent name="C:\Users\User\IdeaProjects\cinema_project\src\main" />
+    </key>
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\User\IdeaProjects\cinema_project\src\main\java\layers" />
+      <recent name="C:\Users\User\IdeaProjects\cinema_project" />
+    </key>
+  </component>
+  <component name="RunManager">
+    <configuration name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="cinema.Main" />
+      <module name="cinema_project" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Application.Main" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="eb10a11c-cc24-4dad-abd6-56191106e877" name="Default Changelist" comment="" />
+      <created>1589972090971</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1589972090971</updated>
+      <workItem from="1589972094303" duration="11867000" />
+      <workItem from="1590041215575" duration="2701000" />
+    </task>
+    <task id="LOCAL-00001" summary="Done">
+      <created>1589983936655</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1589983936655</updated>
+    </task>
+    <task id="LOCAL-00002" summary="Unnecessary interfaces removed, naming fixed, gitignore fixed">
+      <created>1590042161500</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1590042161500</updated>
+    </task>
+    <task id="LOCAL-00003" summary="Trying to remove unnecessary folders mapping them at gitignore">
+      <created>1590045116735</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1590045116735</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="2" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+    <option name="oldMeFiltersMigrated" value="true" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="Done" />
+    <MESSAGE value="Unnecessary interfaces removed, naming fixed, gitignore fixed" />
+    <MESSAGE value="Trying to remove unnecessary folders mapping them at gitignore" />
+    <option name="LAST_COMMIT_MESSAGE" value="Trying to remove unnecessary folders mapping them at gitignore" />
+  </component>
+  <component name="WindowStateProjectService">
+    <state x="361" y="105" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1589982371532">
+      <screen x="0" y="30" width="1536" height="834" />
+    </state>
+    <state x="361" y="105" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.30.1536.834@0.30.1536.834" timestamp="1589982371532" />
+    <state x="574" y="163" key="#com.intellij.ide.util.MemberChooser" timestamp="1589981316943">
+      <screen x="0" y="30" width="1536" height="834" />
+    </state>
+    <state x="574" y="163" key="#com.intellij.ide.util.MemberChooser/0.30.1536.834@0.30.1536.834" timestamp="1589981316943" />
+    <state x="499" y="193" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog" timestamp="1590041391848">
+      <screen x="0" y="30" width="1536" height="834" />
+    </state>
+    <state x="499" y="193" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/0.30.1536.834@0.30.1536.834" timestamp="1590041391848" />
+    <state width="1493" height="213" key="GridCell.Tab.0.bottom" timestamp="1589983833939">
+      <screen x="0" y="30" width="1536" height="834" />
+    </state>
+    <state width="1493" height="213" key="GridCell.Tab.0.bottom/0.30.1536.834@0.30.1536.834" timestamp="1589983833939" />
+    <state width="1493" height="213" key="GridCell.Tab.0.center" timestamp="1589983833939">
+      <screen x="0" y="30" width="1536" height="834" />
+    </state>
+    <state width="1493" height="213" key="GridCell.Tab.0.center/0.30.1536.834@0.30.1536.834" timestamp="1589983833939" />
+    <state width="1493" height="213" key="GridCell.Tab.0.left" timestamp="1589983833939">
+      <screen x="0" y="30" width="1536" height="834" />
+    </state>
+    <state width="1493" height="213" key="GridCell.Tab.0.left/0.30.1536.834@0.30.1536.834" timestamp="1589983833939" />
+    <state width="1493" height="213" key="GridCell.Tab.0.right" timestamp="1589983833939">
+      <screen x="0" y="30" width="1536" height="834" />
+    </state>
+    <state width="1493" height="213" key="GridCell.Tab.0.right/0.30.1536.834@0.30.1536.834" timestamp="1589983833939" />
+    <state x="361" y="180" key="Vcs.Push.Dialog.v2" timestamp="1590045120850">
+      <screen x="0" y="30" width="1536" height="834" />
+    </state>
+    <state x="361" y="180" key="Vcs.Push.Dialog.v2/0.30.1536.834@0.30.1536.834" timestamp="1590045120850" />
+    <state x="611" y="313" width="334" height="268" key="com.intellij.database.actions.DdlActions$DeleteProvider2$1" timestamp="1589983826565">
+      <screen x="0" y="30" width="1536" height="834" />
+    </state>
+    <state x="611" y="313" width="334" height="268" key="com.intellij.database.actions.DdlActions$DeleteProvider2$1/0.30.1536.834@0.30.1536.834" timestamp="1589983826565" />
+  </component>
+</project>
