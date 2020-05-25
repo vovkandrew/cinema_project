@@ -1,12 +1,10 @@
 package cinema.dao.impl;
 
 import cinema.dao.MovieDao;
-import cinema.exceptions.DataExecutionException;
+import cinema.exceptions.DataProcessingException;
 import cinema.library.Dao;
 import cinema.model.Movie;
 import cinema.until.HibernateUtil;
-
-import java.sql.SQLDataException;
 import java.util.List;
 import javax.persistence.criteria.CriteriaQuery;
 import org.apache.log4j.Logger;
@@ -21,30 +19,38 @@ public class MovieDaoImpl implements MovieDao {
     @Override
     public Movie add(Movie movie) {
         Transaction transaction = null;
-        try (Session session = HibernateUtil.getSessionFactory().openSession()) {
+        Session session = null;
+        try {
+            session = HibernateUtil.getSessionFactory().openSession();
             transaction = session.beginTransaction();
             Long movieId = (Long) session.save(movie);
+            transaction.commit();
             movie.setId(movieId);
-            LOGGER.info("New movie " + movie.getTitle() + " " + movie.getId() + " has been added to the database");
+            LOGGER.info("New movie " + movie.getTitle() + " "
+                    + movie.getId() + " has been added to the database");
             return movie;
         } catch (HibernateException e) {
             if (transaction != null) {
                 transaction.rollback();
             }
-            throw new DataExecutionException("Can't add new movie to the database", e);
+            throw new DataProcessingException("Can't add new movie to the database", e);
+        } finally {
+            if (session != null) {
+                session.close();
+            }
         }
     }
 
     @Override
     public List<Movie> getAll() {
         try (Session session = HibernateUtil.getSessionFactory().openSession()) {
-            CriteriaQuery<Movie> criteriaQuery = (CriteriaQuery<Movie>) session.getCriteriaBuilder()
-                    .createQuery(Movie.class);
+            CriteriaQuery<Movie> criteriaQuery =
+                    session.getCriteriaBuilder().createQuery(Movie.class);
             criteriaQuery.from(Movie.class);
             LOGGER.info("All movies retrieved from the database");
             return session.createQuery(criteriaQuery).getResultList();
         } catch (HibernateException e) {
-            throw new DataExecutionException("Can't retrieve movies from the database", e);
+            throw new DataProcessingException("Can't retrieve movies from the database", e);
         }
     }
 }
