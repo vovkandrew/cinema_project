@@ -18,33 +18,33 @@ public class UserDaoImpl implements UserDao {
 
     @Override
     public User add(User user) {
-        Transaction t = null;
-        Session s = null;
+        Transaction transaction = null;
+        Session session = null;
         try {
-            s = HibernateUtil.getSessionFactory().openSession();
-            t = s.beginTransaction();
-            s.save(user);
-            t.commit();
+            session = HibernateUtil.getSessionFactory().openSession();
+            transaction = session.beginTransaction();
+            session.save(user);
+            transaction.commit();
             LOGGER.info("New user " + user.getId() + " has been added to the database");
             return user;
         } catch (HibernateException e) {
-            if (t != null) {
-                t.rollback();
+            if (transaction != null) {
+                transaction.rollback();
             }
-            throw new DataProcessingException("Can't add new user to the database", e);
+            throw new DataProcessingException("Can'transaction add new user to the database", e);
         } finally {
-            if (s != null) {
-                s.close();
+            if (session != null) {
+                session.close();
             }
         }
     }
 
     @Override
     public Optional<User> findByEmail(String email) {
-        try (Session s = HibernateUtil.getSessionFactory().openSession()) {
-            Query q = s.createQuery("from User where email = :email");
-            q.setParameter("email", email);
-            return Optional.of((User) q.uniqueResult());
+        try (Session session = HibernateUtil.getSessionFactory().openSession()) {
+            Query query = session.createQuery("from User where email = :email");
+            query.setParameter("email", email);
+            return Optional.of((User) query.uniqueResult());
         } catch (HibernateException e) {
             throw new DataProcessingException("Can't find a user by email in the database", e);
         }

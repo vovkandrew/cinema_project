@@ -5,7 +5,6 @@ import cinema.library.Inject;
 import cinema.library.Service;
 import cinema.model.User;
 import cinema.service.UserService;
-import cinema.until.PasswordUtil;
 import java.util.Optional;
 
 @Service
@@ -15,12 +14,7 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public User add(User user) {
-        User newUser = new User();
-        newUser.setEmail(user.getEmail());
-        byte[] salt = PasswordUtil.getSalt();
-        newUser.setSalt(salt);
-        newUser.setPassword(PasswordUtil.hashPassword(user.getPassword(), salt));
-        return userDao.add(newUser);
+        return userDao.add(user);
     }
 
     @Override

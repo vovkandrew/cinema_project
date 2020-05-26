@@ -80,13 +80,13 @@ public class Main {
         User user = new User();
         user.setEmail("111@gmail.com");
         user.setPassword("12345");
-        userService.add(user);
-        System.out.println(userService.findByEmail("111@gmail.com").toString());
         AuthenticationService as =
                 (AuthenticationService) injector.getInstance(AuthenticationService.class);
         System.out.println(as.register("222@gmail.com","78910"));
+        System.out.println(as.register("111@gmail.com","12345"));
+        System.out.println(userService.findByEmail("111@gmail.com").toString());
         try {
-            System.out.println(as.login("111@gmail.com", "1234"));
+            System.out.println(as.login("111@gmail.com", "12345"));
         } catch (AuthenticationException e) {
             e.printStackTrace();
         }
