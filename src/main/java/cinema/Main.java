@@ -1,12 +1,16 @@
 package cinema;
 
+import cinema.exceptions.AuthenticationException;
 import cinema.library.Injector;
 import cinema.model.CinemaHall;
 import cinema.model.Movie;
 import cinema.model.MovieSession;
+import cinema.model.User;
+import cinema.service.AuthenticationService;
 import cinema.service.CinemaHallService;
 import cinema.service.MovieService;
 import cinema.service.MovieSessionService;
+import cinema.service.UserService;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 
@@ -67,7 +71,24 @@ public class Main {
         movieSession4.setTime(movieSession1time);
         movieSessionService.add(movieSession4);
         movieSessionService
-                .findAvailableSessions(lotr.getId(), LocalDate.of(2020, 05, 22))
+                .findAvailableSessions(lotr.getId(),
+                        LocalDate.of(2020, 05, 22))
                 .forEach(System.out::println);
+
+        UserService userService =
+                (UserService) injector.getInstance(UserService.class);
+        User user = new User();
+        user.setEmail("111@gmail.com");
+        user.setPassword("12345");
+        AuthenticationService as =
+                (AuthenticationService) injector.getInstance(AuthenticationService.class);
+        System.out.println(as.register("222@gmail.com","78910"));
+        System.out.println(as.register("111@gmail.com","12345"));
+        System.out.println(userService.findByEmail("111@gmail.com").toString());
+        try {
+            System.out.println(as.login("111@gmail.com", "12345"));
+        } catch (AuthenticationException e) {
+            e.printStackTrace();
+        }
     }
 }
