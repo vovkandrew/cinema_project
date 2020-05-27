@@ -1,13 +1,11 @@
 package cinema;
 
-import cinema.dao.ShoppingCartDao;
 import cinema.dao.TicketDao;
 import cinema.exceptions.AuthenticationException;
 import cinema.library.Injector;
 import cinema.model.CinemaHall;
 import cinema.model.Movie;
 import cinema.model.MovieSession;
-import cinema.model.ShoppingCart;
 import cinema.model.Ticket;
 import cinema.model.User;
 import cinema.service.AuthenticationService;
@@ -18,7 +16,6 @@ import cinema.service.ShoppingCartService;
 import cinema.service.UserService;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
-import java.util.List;
 
 public class Main {
     private static final Injector injector = Injector.getInstance("cinema");
@@ -97,7 +94,7 @@ public class Main {
             e.printStackTrace();
         }
         UserService userService = (UserService) injector.getInstance(UserService.class);
-        /*Ticket t1 = new Ticket();
+        Ticket t1 = new Ticket();
         t1.setUser(user);
         t1.setSession(movieSession1);
         TicketDao ticketDao = (TicketDao) injector.getInstance(TicketDao.class);
@@ -105,8 +102,9 @@ public class Main {
         Ticket t2 = new Ticket();
         t1.setUser(user1);
         t1.setSession(movieSession2);
-        ticketDao.add(t2);*/
-        ShoppingCartService scdi = (ShoppingCartService) injector.getInstance(ShoppingCartService.class);
+        ticketDao.add(t2);
+        ShoppingCartService scdi =
+                (ShoppingCartService) injector.getInstance(ShoppingCartService.class);
         System.out.println(scdi.getByUser(user).toString());
         scdi.addSession(movieSession1, user);
         System.out.println(scdi.getByUser(user));

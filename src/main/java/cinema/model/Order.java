@@ -7,35 +7,31 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.MapsId;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
-import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "shopping_cart")
-public class ShoppingCart {
+@Table(name = "orders")
+public class Order {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private Long orderId;
     @OneToMany(cascade = {CascadeType.ALL})
     private List<Ticket> tickets;
     private LocalDateTime orderDate;
-    @OneToOne(cascade = {CascadeType.ALL})
-    @MapsId
-    @JoinColumn(name = "id")
+    @ManyToOne
     private User user;
 
-    public ShoppingCart() {
+    public Order() {
     }
 
-    public Long getId() {
-        return id;
+    public Long getOrderId() {
+        return orderId;
     }
 
-    public void setId(Long id) {
-        this.id = id;
+    public void setOrderId(Long orderId) {
+        this.orderId = orderId;
     }
 
     public List<Ticket> getTickets() {
@@ -64,8 +60,8 @@ public class ShoppingCart {
 
     @Override
     public String toString() {
-        return "ShoppingCart{"
-                + "id=" + id
+        return "Order{"
+                + "orderId=" + orderId
                 + ", tickets=" + tickets
                 + ", orderDate=" + orderDate
                 + ", user=" + user
