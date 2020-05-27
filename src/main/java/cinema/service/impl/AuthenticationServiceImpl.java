@@ -5,13 +5,17 @@ import cinema.library.Inject;
 import cinema.library.Service;
 import cinema.model.User;
 import cinema.service.AuthenticationService;
+import cinema.service.ShoppingCartService;
 import cinema.service.UserService;
 import cinema.until.PasswordUtil;
 
 @Service
 public class AuthenticationServiceImpl implements AuthenticationService {
     @Inject
-    UserService userService;
+    private UserService userService;
+
+    @Inject
+    private ShoppingCartService shoppingCartService;
 
     @Override
     public User login(String email, String password) throws AuthenticationException {
@@ -30,6 +34,8 @@ public class AuthenticationServiceImpl implements AuthenticationService {
         byte[] salt = PasswordUtil.getSalt();
         user.setSalt(salt);
         user.setPassword(PasswordUtil.hashPassword(password, salt));
-        return userService.add(user);
+        userService.add(user);
+        shoppingCartService.registerNewShoppingCart(user);
+        return user;
     }
 }

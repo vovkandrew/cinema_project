@@ -1,21 +1,27 @@
 package cinema;
 
+import cinema.dao.ShoppingCartDao;
+import cinema.dao.TicketDao;
 import cinema.exceptions.AuthenticationException;
 import cinema.library.Injector;
 import cinema.model.CinemaHall;
 import cinema.model.Movie;
 import cinema.model.MovieSession;
+import cinema.model.ShoppingCart;
+import cinema.model.Ticket;
 import cinema.model.User;
 import cinema.service.AuthenticationService;
 import cinema.service.CinemaHallService;
 import cinema.service.MovieService;
 import cinema.service.MovieSessionService;
+import cinema.service.ShoppingCartService;
 import cinema.service.UserService;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.util.List;
 
 public class Main {
-    private static Injector injector = Injector.getInstance("cinema");
+    private static final Injector injector = Injector.getInstance("cinema");
 
     public static void main(String[] args) {
         MovieService movieService = (MovieService) injector.getInstance(MovieService.class);
@@ -74,21 +80,35 @@ public class Main {
                 .findAvailableSessions(lotr.getId(),
                         LocalDate.of(2020, 05, 22))
                 .forEach(System.out::println);
-
-        UserService userService =
-                (UserService) injector.getInstance(UserService.class);
         User user = new User();
         user.setEmail("111@gmail.com");
         user.setPassword("12345");
+        User user1 = new User();
+        user1.setEmail("222@gmail.com");
+        user1.setPassword("78910");
         AuthenticationService as =
                 (AuthenticationService) injector.getInstance(AuthenticationService.class);
-        System.out.println(as.register("222@gmail.com","78910"));
-        System.out.println(as.register("111@gmail.com","12345"));
-        System.out.println(userService.findByEmail("111@gmail.com").toString());
+        System.out.println(as.register(user.getEmail(),user.getPassword()));
+        System.out.println(as.register(user1.getEmail(),user1.getPassword()));
         try {
             System.out.println(as.login("111@gmail.com", "12345"));
+            System.out.println(as.login("222@gmail.com", "78910"));
         } catch (AuthenticationException e) {
             e.printStackTrace();
         }
+        UserService userService = (UserService) injector.getInstance(UserService.class);
+        /*Ticket t1 = new Ticket();
+        t1.setUser(user);
+        t1.setSession(movieSession1);
+        TicketDao ticketDao = (TicketDao) injector.getInstance(TicketDao.class);
+        ticketDao.add(t1);
+        Ticket t2 = new Ticket();
+        t1.setUser(user1);
+        t1.setSession(movieSession2);
+        ticketDao.add(t2);*/
+        ShoppingCartService scdi = (ShoppingCartService) injector.getInstance(ShoppingCartService.class);
+        System.out.println(scdi.getByUser(user).toString());
+        scdi.addSession(movieSession1, user);
+        System.out.println(scdi.getByUser(user));
     }
 }
