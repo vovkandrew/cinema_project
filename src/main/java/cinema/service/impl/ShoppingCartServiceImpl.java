@@ -2,20 +2,20 @@ package cinema.service.impl;
 
 import cinema.dao.ShoppingCartDao;
 import cinema.dao.TicketDao;
-import cinema.library.Inject;
-import cinema.library.Service;
 import cinema.model.MovieSession;
 import cinema.model.ShoppingCart;
 import cinema.model.Ticket;
 import cinema.model.User;
 import cinema.service.ShoppingCartService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 @Service
 public class ShoppingCartServiceImpl implements ShoppingCartService {
-    @Inject
+    @Autowired
     private TicketDao ticketDao;
 
-    @Inject
+    @Autowired
     private ShoppingCartDao shoppingCartDao;
 
     @Override
@@ -27,7 +27,6 @@ public class ShoppingCartServiceImpl implements ShoppingCartService {
         cart.getTickets().add(ticket);
         ticketDao.add(ticket);
         shoppingCartDao.update(cart);
-
     }
 
     @Override

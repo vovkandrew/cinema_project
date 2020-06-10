@@ -1,8 +1,6 @@
 package cinema.service.impl;
 
 import cinema.dao.OrderDao;
-import cinema.library.Inject;
-import cinema.library.Service;
 import cinema.model.Order;
 import cinema.model.ShoppingCart;
 import cinema.model.Ticket;
@@ -11,13 +9,15 @@ import cinema.service.OrderService;
 import cinema.service.ShoppingCartService;
 import java.time.LocalDateTime;
 import java.util.List;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 @Service
 public class OrderServiceImpl implements OrderService {
-    @Inject
+    @Autowired
     private OrderDao orderDao;
 
-    @Inject
+    @Autowired
     private ShoppingCartService shoppingCartService;
 
     @Override
