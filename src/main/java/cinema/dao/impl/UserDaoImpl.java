@@ -2,26 +2,29 @@ package cinema.dao.impl;
 
 import cinema.dao.UserDao;
 import cinema.exceptions.DataProcessingException;
-import cinema.library.Dao;
 import cinema.model.User;
-import cinema.until.HibernateUtil;
 import java.util.Optional;
 import org.apache.log4j.Logger;
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
+import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
 import org.hibernate.query.Query;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Repository;
 
-@Dao
+@Repository
 public class UserDaoImpl implements UserDao {
     private static final Logger LOGGER = Logger.getLogger(UserDaoImpl.class);
+    @Autowired
+    private SessionFactory sessionFactory;
 
     @Override
     public User add(User user) {
         Transaction transaction = null;
         Session session = null;
         try {
-            session = HibernateUtil.getSessionFactory().openSession();
+            session = sessionFactory.openSession();
             transaction = session.beginTransaction();
             session.save(user);
             transaction.commit();
@@ -41,9 +44,10 @@ public class UserDaoImpl implements UserDao {
 
     @Override
     public Optional<User> findByEmail(String email) {
-        try (Session session = HibernateUtil.getSessionFactory().openSession()) {
+        try (Session session = sessionFactory.openSession()) {
             Query query = session.createQuery("from User where email = :email");
             query.setParameter("email", email);
+            LOGGER.info("User has been found by email " + email);
             return Optional.of((User) query.uniqueResult());
         } catch (HibernateException e) {
             throw new DataProcessingException("Can't find a user by email in the database", e);
