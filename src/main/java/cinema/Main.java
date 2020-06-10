@@ -93,10 +93,5 @@ public class Main {
         t1.setUser(user1);
         t1.setSession(movieSession2);
         ticketDao.add(t2);
-        ShoppingCartService scdi =
-                context.getBean(ShoppingCartService.class);
-        System.out.println(scdi.getByUser(user).toString());
-        scdi.addSession(movieSession1, user);
-        System.out.println(scdi.getByUser(user));
     }
 }
