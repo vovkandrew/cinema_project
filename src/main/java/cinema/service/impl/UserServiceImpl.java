@@ -3,7 +3,6 @@ package cinema.service.impl;
 import cinema.dao.UserDao;
 import cinema.model.User;
 import cinema.service.UserService;
-import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -18,7 +17,12 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public Optional<User> findByEmail(String email) {
+    public User findByEmail(String email) {
         return userDao.findByEmail(email);
+    }
+
+    @Override
+    public User getById(Long id) {
+        return userDao.getById(id);
     }
 }

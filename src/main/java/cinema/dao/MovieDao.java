@@ -7,4 +7,6 @@ public interface MovieDao {
     public Movie add(Movie movie);
 
     public List<Movie> getAll();
+
+    public Movie getById(Long id);
 }

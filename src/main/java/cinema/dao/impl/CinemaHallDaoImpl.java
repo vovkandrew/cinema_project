@@ -10,6 +10,7 @@ import org.hibernate.HibernateException;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
+import org.hibernate.query.Query;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
@@ -52,6 +53,20 @@ public class CinemaHallDaoImpl implements CinemaHallDao {
             criteriaQuery.from(CinemaHall.class);
             LOGGER.info("All cinema halls retrieved from the database");
             return session.createQuery(criteriaQuery).getResultList();
+        } catch (HibernateException e) {
+            throw new DataProcessingException(
+                    "Can't retrieve all cinema halls from the database", e);
+        }
+    }
+
+    @Override
+    public CinemaHall getById(Long id) {
+        try (Session session = sessionFactory.openSession()) {
+            Query<CinemaHall> query = session.createQuery(
+                    "from CinemaHall where id = :id", CinemaHall.class);
+            query.setParameter("id", id);
+            LOGGER.info("Cinema hall with id " + id + " has been found in the database");
+            return query.uniqueResult();
         } catch (HibernateException e) {
             throw new DataProcessingException(
                     "Can't retrieve all cinema halls from the database", e);

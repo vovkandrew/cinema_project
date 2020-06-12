@@ -47,9 +47,10 @@ public class OrderDaoImpl implements OrderDao {
     public List<Order> getAll(User user) {
         try (Session session = sessionFactory.openSession()) {
             Query<Order> query = session.createQuery(
-                    "from Order order join fetch order.tickets Ticket "
-                            + "where order.user = :user", Order.class);
-            query.setParameter("user", user);
+                    "select distinct o from Order o "
+                            + "join fetch o.tickets t "
+                            + "where o.user.id = :id", Order.class);
+            query.setParameter("id", user.getId());
             LOGGER.info("All orders has been retrieved from the database");
             return query.list();
         } catch (HibernateException e) {

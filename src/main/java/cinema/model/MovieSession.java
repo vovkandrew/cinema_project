@@ -23,6 +23,12 @@ public class MovieSession {
     public MovieSession() {
     }
 
+    public MovieSession(Movie movie, CinemaHall cinemaHall, LocalDateTime time) {
+        this.movie = movie;
+        this.cinemaHall = cinemaHall;
+        this.time = time;
+    }
+
     public Long getId() {
         return id;
     }

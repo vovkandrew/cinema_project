@@ -8,4 +8,6 @@ public interface MovieSessionDao {
     public MovieSession add(MovieSession movieSession);
 
     public List<MovieSession> findAvailableSessions(Long movieId, LocalDate date);
+
+    public MovieSession getById(Long id);
 }
