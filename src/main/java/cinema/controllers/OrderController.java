@@ -47,7 +47,7 @@ public class OrderController {
                 userService.findByEmail(userRequestDto.getEmail()));
     }
 
-    @GetMapping("/orders")
+    @GetMapping("/all")
     public List<OrderResponseDto> getAllOrdersByUserId(@RequestParam Long userId) {
         return orderService.getOrderHistory(
                 userService.getById(userId))

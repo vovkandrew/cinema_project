@@ -14,7 +14,6 @@ import org.hibernate.HibernateException;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
-import org.hibernate.query.Query;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
@@ -71,11 +70,8 @@ public class MovieSessionDaoImpl implements MovieSessionDao {
     @Override
     public MovieSession getById(Long id) {
         try (Session session = sessionFactory.openSession()) {
-            Query<MovieSession> query =
-                    session.createQuery("from MovieSession where id = :id", MovieSession.class);
-            query.setParameter("id", id);
             LOGGER.info("Movie session with id " + id + " retrieved from the database");
-            return query.uniqueResult();
+            return session.get(MovieSession.class, id);
         } catch (HibernateException e) {
             throw new DataProcessingException("Can't retrieve movie from the database", e);
         }

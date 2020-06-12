@@ -56,10 +56,8 @@ public class UserDaoImpl implements UserDao {
     @Override
     public User getById(Long id) {
         try (Session session = sessionFactory.openSession()) {
-            Query<User> query = session.createQuery("from User where id = :id", User.class);
-            query.setParameter("id", id);
             LOGGER.info("User has been found by id " + id);
-            return query.uniqueResult();
+            return session.get(User.class, id);
         } catch (HibernateException e) {
             throw new DataProcessingException("Can't find a user by email in the database", e);
         }

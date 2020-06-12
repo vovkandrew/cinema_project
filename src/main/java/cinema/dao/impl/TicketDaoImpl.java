@@ -8,7 +8,6 @@ import org.hibernate.HibernateException;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
-import org.hibernate.query.Query;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
@@ -44,11 +43,8 @@ public class TicketDaoImpl implements TicketDao {
     @Override
     public Ticket getById(Long id) {
         try (Session session = sessionFactory.openSession()) {
-            Query<Ticket> query =
-                    session.createQuery("from Ticket where id = :id", Ticket.class);
-            query.setParameter("id", id);
             LOGGER.info("Ticket with id " + id + " retrieved from the database");
-            return query.uniqueResult();
+            return session.get(Ticket.class, id);
         } catch (HibernateException e) {
             throw new DataProcessingException("Can't retrieve movie from the database", e);
         }

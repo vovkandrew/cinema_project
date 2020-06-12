@@ -9,13 +9,17 @@ import org.springframework.stereotype.Component;
 public class CinemaHallMapper {
     public CinemaHall getCinemaHallFromCinemaHallRequestDto(
             CinemaHallRequestDto cinemaHallRequestDto) {
-        return new CinemaHall(cinemaHallRequestDto.getCapacity(),
-                cinemaHallRequestDto.getDescription());
+        CinemaHall hall = new CinemaHall();
+        hall.setCapacity(cinemaHallRequestDto.getCapacity());
+        hall.setDescription(cinemaHallRequestDto.getDescription());
+        return hall;
     }
 
     public CinemaHallResponseDto getCinemaHallResponseDtoFromCinemaHall(
             CinemaHall cinemaHall) {
-        return new CinemaHallResponseDto(
-                cinemaHall.getCapacity(), cinemaHall.getDescription());
+        CinemaHallResponseDto hallDto = new CinemaHallResponseDto();
+        hallDto.setCapacity(cinemaHall.getCapacity());
+        hallDto.setDescription(cinemaHall.getDescription());
+        return hallDto;
     }
 }

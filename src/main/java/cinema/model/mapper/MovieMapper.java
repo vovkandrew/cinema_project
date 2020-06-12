@@ -9,10 +9,16 @@ import org.springframework.stereotype.Component;
 public class MovieMapper {
 
     public Movie getMovieFromMovieRequestDto(MovieRequestDto movieRequestDto) {
-        return new Movie(movieRequestDto.getTitle(), movieRequestDto.getDescription());
+        Movie movie = new Movie();
+        movie.setDescription(movieRequestDto.getDescription());
+        movie.setTitle(movieRequestDto.getTitle());
+        return movie;
     }
 
     public MovieResponseDto getMovieResponseDtoFromMovie(Movie movie) {
-        return new MovieResponseDto(movie.getTitle(), movie.getDescription());
+        MovieResponseDto movieDto = new MovieResponseDto();
+        movieDto.setDescription(movie.getDescription());
+        movieDto.setTitle(movie.getTitle());
+        return movieDto;
     }
 }
