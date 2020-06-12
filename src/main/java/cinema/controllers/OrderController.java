@@ -1,5 +1,8 @@
 package cinema.controllers;
 
+import cinema.model.ShoppingCart;
+import cinema.model.Ticket;
+import cinema.model.User;
 import cinema.model.dto.OrderResponseDto;
 import cinema.model.dto.UserRequestDto;
 import cinema.model.mapper.OrderMapper;
@@ -41,13 +44,13 @@ public class OrderController {
 
     @PostMapping("/complete")
     public void completeOrder(@RequestBody UserRequestDto userRequestDto) {
-        orderService.completeOrder(
-                shoppingCartService.getByUser(
-                        userService.findByEmail(userRequestDto.getEmail())).getTickets(),
-                userService.findByEmail(userRequestDto.getEmail()));
+        User user = userService.findByEmail(userRequestDto.getEmail());
+        ShoppingCart cart = shoppingCartService.getByUser(user);
+        List<Ticket> tickets = cart.getTickets();
+        orderService.completeOrder(tickets, user);
     }
 
-    @GetMapping("/all")
+    @GetMapping
     public List<OrderResponseDto> getAllOrdersByUserId(@RequestParam Long userId) {
         return orderService.getOrderHistory(
                 userService.getById(userId))

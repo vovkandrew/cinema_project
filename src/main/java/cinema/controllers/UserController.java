@@ -1,5 +1,6 @@
 package cinema.controllers;
 
+import cinema.model.User;
 import cinema.model.dto.UserResponseDto;
 import cinema.model.mapper.UserMapper;
 import cinema.service.UserService;
@@ -18,8 +19,9 @@ public class UserController {
     @Autowired
     private UserMapper userMapper;
 
-    @GetMapping("/byemail")
+    @GetMapping("/by-email")
     public UserResponseDto getUserByEmail(@RequestParam String email) {
-        return userMapper.getUserResponseDtoFromUser(userService.findByEmail(email));
+        User user = userService.findByEmail(email);
+        return userMapper.getUserResponseDtoFromUser(user);
     }
 }

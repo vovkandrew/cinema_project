@@ -1,5 +1,8 @@
 package cinema.controllers;
 
+import cinema.model.MovieSession;
+import cinema.model.ShoppingCart;
+import cinema.model.User;
 import cinema.model.dto.ShoppingCartResponseDto;
 import cinema.model.mapper.ShoppingCartMapper;
 import cinema.service.MovieSessionService;
@@ -27,17 +30,17 @@ public class ShoppingCartController {
     @Autowired
     private ShoppingCartMapper shoppingCartMapper;
 
-    @PostMapping("/addmoviesession")
+    @PostMapping("/add-movie-session")
     public void addMovieSession(@RequestParam Long sessionId, @RequestParam Long userId) {
-        shoppingCartService.addSession(
-                movieSessionService.getById(sessionId),
-                userService.getById(userId));
+        MovieSession session = movieSessionService.getById(sessionId);
+        User user = userService.getById(userId);
+        shoppingCartService.addSession(session, user);
     }
 
-    @GetMapping("/byuser")
+    @GetMapping("/by-user")
     public ShoppingCartResponseDto getByUser(@RequestParam Long userId) {
-        return shoppingCartMapper.getShoppingCartResponseDtoFromShoppingCart(
-                shoppingCartService.getByUser(
-                        userService.getById(userId)));
+        User user = userService.getById(userId);
+        ShoppingCart cart = shoppingCartService.getByUser(user);
+        return shoppingCartMapper.getShoppingCartResponseDtoFromShoppingCart(cart);
     }
 }

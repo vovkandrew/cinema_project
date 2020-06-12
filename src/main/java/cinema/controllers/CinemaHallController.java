@@ -1,5 +1,6 @@
 package cinema.controllers;
 
+import cinema.model.CinemaHall;
 import cinema.model.dto.CinemaHallRequestDto;
 import cinema.model.dto.CinemaHallResponseDto;
 import cinema.model.mapper.CinemaHallMapper;
@@ -14,7 +15,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping("/cinemahalls")
+@RequestMapping("/cinema-halls")
 public class CinemaHallController {
     @Autowired
     private CinemaHallService cinemaHallService;
@@ -24,9 +25,10 @@ public class CinemaHallController {
 
     @PostMapping
     public void addCinemaHall(@RequestBody CinemaHallRequestDto cinemaHallRequestDto) {
-        cinemaHallService.add(
+        CinemaHall hall =
                 cinemaHallMapper.getCinemaHallFromCinemaHallRequestDto(
-                        cinemaHallRequestDto));
+                        cinemaHallRequestDto);
+        cinemaHallService.add(hall);
     }
 
     @GetMapping

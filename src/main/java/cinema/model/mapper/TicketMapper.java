@@ -12,8 +12,10 @@ public class TicketMapper {
     private TicketService ticketService;
 
     public TicketResponseDto getTicketResponseDtoFromTicket(Ticket ticket) {
-        return new TicketResponseDto(ticket.getSession().getMovie().getTitle(),
-                ticket.getSession().getCinemaHall().getId(),
-                ticket.getSession().getTime().toString());
+        TicketResponseDto ticketDto = new TicketResponseDto();
+        ticketDto.setMovieTitle(ticket.getSession().getMovie().getTitle());
+        ticketDto.setHallId(ticket.getSession().getCinemaHall().getId());
+        ticketDto.setShowTime(ticket.getSession().getTime().toString());
+        return ticketDto;
     }
 }

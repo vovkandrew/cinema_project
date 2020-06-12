@@ -1,5 +1,6 @@
 package cinema.controllers;
 
+import cinema.model.Movie;
 import cinema.model.dto.MovieRequestDto;
 import cinema.model.dto.MovieResponseDto;
 import cinema.model.mapper.MovieMapper;
@@ -24,7 +25,8 @@ public class MovieController {
 
     @PostMapping
     public void addMovie(@RequestBody MovieRequestDto movieRequestDto) {
-        movieService.add(movieMapper.getMovieFromMovieRequestDto(movieRequestDto));
+        Movie movie = movieMapper.getMovieFromMovieRequestDto(movieRequestDto);
+        movieService.add(movie);
     }
 
     @GetMapping
