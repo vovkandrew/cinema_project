@@ -56,4 +56,14 @@ public class MovieDaoImpl implements MovieDao {
             throw new DataProcessingException("Can't retrieve movies from the database", e);
         }
     }
+
+    @Override
+    public Movie getById(Long id) {
+        try (Session session = sessionFactory.openSession()) {
+            LOGGER.info("Movie with id " + id + " retrieved from the database");
+            return session.get(Movie.class, id);
+        } catch (HibernateException e) {
+            throw new DataProcessingException("Can't retrieve movie from the database", e);
+        }
+    }
 }

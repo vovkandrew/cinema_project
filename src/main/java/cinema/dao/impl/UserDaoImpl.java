@@ -3,7 +3,6 @@ package cinema.dao.impl;
 import cinema.dao.UserDao;
 import cinema.exceptions.DataProcessingException;
 import cinema.model.User;
-import java.util.Optional;
 import org.apache.log4j.Logger;
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
@@ -43,12 +42,22 @@ public class UserDaoImpl implements UserDao {
     }
 
     @Override
-    public Optional<User> findByEmail(String email) {
+    public User findByEmail(String email) {
         try (Session session = sessionFactory.openSession()) {
-            Query query = session.createQuery("from User where email = :email");
+            Query<User> query = session.createQuery("from User where email = :email", User.class);
             query.setParameter("email", email);
             LOGGER.info("User has been found by email " + email);
-            return Optional.of((User) query.uniqueResult());
+            return query.uniqueResult();
+        } catch (HibernateException e) {
+            throw new DataProcessingException("Can't find a user by email in the database", e);
+        }
+    }
+
+    @Override
+    public User getById(Long id) {
+        try (Session session = sessionFactory.openSession()) {
+            LOGGER.info("User has been found by id " + id);
+            return session.get(User.class, id);
         } catch (HibernateException e) {
             throw new DataProcessingException("Can't find a user by email in the database", e);
         }

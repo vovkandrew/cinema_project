@@ -39,4 +39,14 @@ public class TicketDaoImpl implements TicketDao {
             }
         }
     }
+
+    @Override
+    public Ticket getById(Long id) {
+        try (Session session = sessionFactory.openSession()) {
+            LOGGER.info("Ticket with id " + id + " retrieved from the database");
+            return session.get(Ticket.class, id);
+        } catch (HibernateException e) {
+            throw new DataProcessingException("Can't retrieve movie from the database", e);
+        }
+    }
 }

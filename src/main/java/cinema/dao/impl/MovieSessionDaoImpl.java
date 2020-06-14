@@ -66,4 +66,14 @@ public class MovieSessionDaoImpl implements MovieSessionDao {
                     "Can't retrieve available movie sessions from the database", e);
         }
     }
+
+    @Override
+    public MovieSession getById(Long id) {
+        try (Session session = sessionFactory.openSession()) {
+            LOGGER.info("Movie session with id " + id + " retrieved from the database");
+            return session.get(MovieSession.class, id);
+        } catch (HibernateException e) {
+            throw new DataProcessingException("Can't retrieve movie from the database", e);
+        }
+    }
 }

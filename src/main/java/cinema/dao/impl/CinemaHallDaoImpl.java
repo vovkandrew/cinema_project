@@ -57,4 +57,15 @@ public class CinemaHallDaoImpl implements CinemaHallDao {
                     "Can't retrieve all cinema halls from the database", e);
         }
     }
+
+    @Override
+    public CinemaHall getById(Long id) {
+        try (Session session = sessionFactory.openSession()) {
+            LOGGER.info("Cinema hall with id " + id + " has been found in the database");
+            return session.get(CinemaHall.class, id);
+        } catch (HibernateException e) {
+            throw new DataProcessingException(
+                    "Can't retrieve all cinema halls from the database", e);
+        }
+    }
 }
