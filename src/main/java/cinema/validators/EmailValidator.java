@@ -4,15 +4,12 @@ import javax.validation.ConstraintValidator;
 import javax.validation.ConstraintValidatorContext;
 
 public class EmailValidator implements ConstraintValidator<EmailConstraint, String> {
-
-    @Override
-    public void initialize(EmailConstraint email) {
-    }
+    private static final String emailPattern = "^.+@.*";
 
     @Override
     public boolean isValid(String email, ConstraintValidatorContext constraintValidatorContext) {
         return (email != null)
-                && email.matches("^.+@.*")
+                && email.matches(emailPattern)
                 && (email.length() >= 10)
                 && (email.length() <= 30);
     }
