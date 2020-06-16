@@ -1,8 +1,15 @@
 package cinema.model.dto;
 
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Pattern;
+
 public class MovieSessionRequestDto {
+    @NotNull(message = "Movie id shouldn't be null")
     private Long movieId;
+    @NotNull(message = "Cinema hall id shouldn't be null")
     private Long cinemaHallId;
+    @Pattern(regexp = "^\\\\d{4}-\\\\d{2}-\\\\d{2}$",
+            message = "Movie session time should match the following patter YYYY-MM-DD")
     private String time;
 
     public MovieSessionRequestDto() {
