@@ -2,6 +2,7 @@ package cinema.config;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
+import org.springframework.http.HttpMethod;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
@@ -26,6 +27,10 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         http
                 .authorizeRequests()
                 .antMatchers("/register").permitAll()
+                .antMatchers(HttpMethod.POST, "/movie-sessions").hasRole("ADMIN")
+                .antMatchers(HttpMethod.POST, "/complete").hasRole("USER")
+                .antMatchers(HttpMethod.GET, "/shopping-carts/by-user").hasRole("ADMIN")
+                .antMatchers(HttpMethod.GET, "/movies").hasAnyRole("ADMIN", "USER")
                 .anyRequest().authenticated()
                 .and()
                 .formLogin()

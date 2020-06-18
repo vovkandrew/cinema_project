@@ -1,10 +1,7 @@
 package cinema.controllers;
 
-import cinema.model.Role;
 import cinema.model.dto.UserRequestDto;
 import cinema.service.AuthenticationService;
-import cinema.service.RoleService;
-import javax.annotation.PostConstruct;
 import javax.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -17,19 +14,6 @@ import org.springframework.web.bind.annotation.RestController;
 public class AuthenticationController {
     @Autowired
     private AuthenticationService authenticationService;
-
-    @Autowired
-    private RoleService roleService;
-
-    @PostConstruct
-    public void postConstruct() {
-        Role adminRole = new Role();
-        adminRole.setRoleName(Role.RoleName.ADMIN);
-        roleService.addRole(adminRole);
-        Role userRole = new Role();
-        userRole.setRoleName(Role.RoleName.USER);
-        roleService.addRole(userRole);
-    }
 
     @PostMapping("/register")
     public void register(@RequestBody @Valid UserRequestDto userRequestDto) {

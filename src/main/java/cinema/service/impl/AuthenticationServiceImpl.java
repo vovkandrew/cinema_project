@@ -1,6 +1,5 @@
 package cinema.service.impl;
 
-import cinema.exceptions.AuthenticationException;
 import cinema.model.Role;
 import cinema.model.User;
 import cinema.service.AuthenticationService;
@@ -9,7 +8,7 @@ import cinema.service.ShoppingCartService;
 import cinema.service.UserService;
 import java.util.Set;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -23,10 +22,8 @@ public class AuthenticationServiceImpl implements AuthenticationService {
     @Autowired
     private ShoppingCartService shoppingCartService;
 
-    @Override
-    public User login(String email, String password) throws AuthenticationException {
-        return null;
-    }
+    @Autowired
+    private PasswordEncoder passwordEncoder;
 
     @Override
     public User register(String email, String password) {
@@ -35,7 +32,7 @@ public class AuthenticationServiceImpl implements AuthenticationService {
         Role adminRole = roleService.findRoleByName("ADMIN");
         Role userRole = roleService.findRoleByName("USER");
         user.setRoles(Set.of(adminRole, userRole));
-        user.setPassword(new BCryptPasswordEncoder().encode(password));
+        user.setPassword(passwordEncoder.encode(password));
         userService.add(user);
         shoppingCartService.registerNewShoppingCart(user);
         return user;

@@ -14,7 +14,7 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public class RoleDaoImpl implements RoleDao {
-    private static final Logger LOGGER = Logger.getLogger(UserDaoImpl.class);
+    private static final Logger LOGGER = Logger.getLogger(RoleDaoImpl.class);
     @Autowired
     private SessionFactory sessionFactory;
 
@@ -47,7 +47,6 @@ public class RoleDaoImpl implements RoleDao {
                     session.createQuery(
                             "from Role where roleName = :roleName", Role.class);
             query.setParameter("roleName", Role.RoleName.valueOf(roleName));
-            LOGGER.info("Role has been found by role name " + roleName);
             return query.uniqueResult();
         } catch (HibernateException e) {
             throw new DataProcessingException("Can't find a role by name in the database", e);
