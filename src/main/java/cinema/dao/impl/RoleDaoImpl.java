@@ -1,8 +1,8 @@
 package cinema.dao.impl;
 
-import cinema.dao.UserDao;
+import cinema.dao.RoleDao;
 import cinema.exceptions.DataProcessingException;
-import cinema.model.User;
+import cinema.model.Role;
 import org.apache.log4j.Logger;
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
@@ -13,27 +13,26 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public class UserDaoImpl implements UserDao {
+public class RoleDaoImpl implements RoleDao {
     private static final Logger LOGGER = Logger.getLogger(UserDaoImpl.class);
     @Autowired
     private SessionFactory sessionFactory;
 
     @Override
-    public User add(User user) {
+    public void addRole(Role role) {
         Transaction transaction = null;
         Session session = null;
         try {
             session = sessionFactory.openSession();
             transaction = session.beginTransaction();
-            session.save(user);
+            session.save(role);
             transaction.commit();
-            LOGGER.info("New user " + user.getId() + " has been added to the database");
-            return user;
+            LOGGER.info("New role " + role.getRoleName() + " has been added to the database");
         } catch (HibernateException e) {
             if (transaction != null) {
                 transaction.rollback();
             }
-            throw new DataProcessingException("Can't add new user to the database", e);
+            throw new DataProcessingException("Can't add new role to the database", e);
         } finally {
             if (session != null) {
                 session.close();
@@ -42,27 +41,16 @@ public class UserDaoImpl implements UserDao {
     }
 
     @Override
-    public User findByEmail(String email) {
+    public Role findByName(String roleName) {
         try (Session session = sessionFactory.openSession()) {
-            Query<User> query =
+            Query<Role> query =
                     session.createQuery(
-                            "from User u left join fetch u.roles Role "
-                                    + "where u.email = :email", User.class);
-            query.setParameter("email", email);
-            LOGGER.info("User has been found by email " + email);
+                            "from Role where roleName = :roleName", Role.class);
+            query.setParameter("roleName", Role.RoleName.valueOf(roleName));
+            LOGGER.info("Role has been found by role name " + roleName);
             return query.uniqueResult();
         } catch (HibernateException e) {
-            throw new DataProcessingException("Can't find a user by email in the database", e);
-        }
-    }
-
-    @Override
-    public User getById(Long id) {
-        try (Session session = sessionFactory.openSession()) {
-            LOGGER.info("User has been found by id " + id);
-            return session.get(User.class, id);
-        } catch (HibernateException e) {
-            throw new DataProcessingException("Can't find a user by email in the database", e);
+            throw new DataProcessingException("Can't find a role by name in the database", e);
         }
     }
 }
